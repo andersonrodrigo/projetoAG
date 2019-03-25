@@ -1,0 +1,62 @@
+
+<div class="container">
+  <div class="row box-cadastro">
+    <div class="col-12">
+      <h3 class="text-center">Bancos</h3>
+      <mat-tab-group>
+          <mat-tab label="Seleção">
+              <mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="height: 200px; width: 110vh;">
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="codigoBanco">
+                    <mat-header-cell *matHeaderCellDef> Cod. Banco </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.codigoBanco}} </mat-cell>
+                  </ng-container>
+                
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="descricaoBanco">
+                    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.descricaoBanco}} </mat-cell>
+                  </ng-container>
+                
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="descricaoSigla">
+                    <mat-header-cell *matHeaderCellDef> Sigla </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.descricaoSigla}} </mat-cell>
+                  </ng-container>
+                
+                
+
+                
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                 
+
+                </mat-table>
+
+
+          </mat-tab>
+
+          <mat-tab label="Formulario" >
+
+          <form class="mt-5"   [formGroup]='formCadastro' style="height: 300px; width: 110vh;">
+            <div class="form-group">
+              <input type="text" class="form-control cadastro" placeholder="Codigo Banco" formControlName='codigoBanco'>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control cadastro" placeholder="Nome Banco" formControlName='descricaoBanco'>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control cadastro" placeholder="Sigla" formControlName='descricaoSigla'>
+            </div>
+            <div class="form-group"    style="text-align: center;">
+            <button type="submit" (click)="sair($event)" class="btn btn-cadastro btn-lg">Sair</button> &nbsp;
+            <button type="submit" (click)="cadastro($event)" class="btn btn-cadastro btn-lg">Salvar</button>
+            </div>
+          </form>
+ </mat-tab>
+        </mat-tab-group>
+
+    </div>
+  </div>
+</div>

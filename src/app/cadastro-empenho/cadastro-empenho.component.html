@@ -1,0 +1,148 @@
+<div class="container">
+    <div class="row box-cadastro">
+      <div class="col-12">
+        <h3 class="text-center">Empenhos</h3>
+        <mat-tab-group>
+            <mat-tab label="Seleção">
+                <mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="height: 200px; width: 110vh;">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="codigoBanco">
+                      <mat-header-cell *matHeaderCellDef> Cod. </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element.codigoBanco}} </mat-cell>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="descricaoBanco">
+                      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element.descricaoBanco}} </mat-cell>
+                    </ng-container>
+  
+                  
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+                   
+  
+                  </mat-table>
+  
+  
+            </mat-tab>
+  
+            <mat-tab label="Formulario" >
+  
+            <form class="mt-5"   [formGroup]='formCadastro' style="height: 300px; width: 110vh;">
+              <div class="form-group">
+                <input type="text" class="form-control cadastro" placeholder="Codigo Entidade" formControlName='codigoEntidade'>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control cadastro" placeholder="Serie Empenho." formControlName='serieEmpenho'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Id Tipo Empenho" formControlName='idtTipoempenho'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Funcional Programatica" formControlName='funcionalProgramatica'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Valor Empenho" formControlName='valorEmpenho'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Data Empenho" formControlName='dataEmpenho'>
+              </div>
+              <div class="form-group">
+                  <input type="number" class="form-control cadastro" placeholder="Unidade Orcamentaria" formControlName='unidadeOrcamentaria'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Descricao Orcamentaria" formControlName='descricaoUnidadeOrcamentaria'>
+              </div>
+              <div class="form-group">
+                  <input type="number" class="form-control cadastro" placeholder="Natureza Despesa " formControlName='naturezaDespesa'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Descrição Despesa " formControlName='descricaoNaturezaDespesa'>
+              </div>
+
+              <div class="form-group">
+                  <input type="number" class="form-control cadastro" placeholder="Natureza Despesa Excecusao" formControlName='naturezaDespesaExecucacao'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Descrição Natureza Despesa Excecusao " formControlName='descricaoNaturezaDespesaExecucao'>
+              </div>
+                
+
+              <div class="form-group">
+                  <input type="number" class="form-control cadastro" placeholder="Fonte Recurso" formControlName='fonteRecurso'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Descrição Fonte Recurso " formControlName='descricacaoRecurso'>
+              </div>
+
+              <div class="form-group">
+                  <input type="number" class="form-control cadastro" placeholder="Fonte Recurso Execucao" formControlName='fonteRecursoExecucao'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Descrição Fonte Recurso Execucao" formControlName='descricacaoRecursoExecucao'>
+              </div>
+               
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Ficha Orcamento" formControlName='fichaOrcamento'>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Codigo VPD" formControlName='codigoVPD'>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Descricao VPD" formControlName='descricaoVPD'>
+              </div>
+              <div class="form-group">
+                  <input type="number" class="form-control cadastro" placeholder="Codigo Grupo Entidade Compras" formControlName='codigoGrupoEntidadeCompras'>
+              </div>
+
+              <div class="form-group">
+                  <input type="number" class="form-control cadastro" placeholder="Codigo Modalidade Licitacao" formControlName='codigoModalidadeLicitacao'>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Descrição Modalidade Licitacao" formControlName='descricaoModalidadeLicitacao'>
+              </div>
+                
+
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Flag Pessoal" formControlName='flagPessoal'>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Id Tipo Despesa" formControlName='idtTipodespesa'>
+              </div>
+
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Flag Despesa Impugnada" formControlName='flagDespesaimpugnada'>
+              </div>
+
+              <div class="form-group">
+                  <input type="number" class="form-control cadastro" placeholder="Codigo Credor" formControlName='codigoCredor'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Nome Credor" formControlName='nomeCredor'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Historico Empenho" formControlName='historicoEmpenho'>
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control cadastro" placeholder="Numero Empenho" formControlName='numeroEmpenho'>
+              </div>
+
+
+            
+              <div class="form-group"    style="text-align: center;">
+              <button type="submit" (click)="sair($event)" class="btn btn-cadastro btn-lg">Sair</button> &nbsp;
+              <button type="submit" (click)="cadastro($event)" class="btn btn-cadastro btn-lg">Salvar</button>
+              </div>
+            </form>
+   </mat-tab>
+          </mat-tab-group>
+  
+      </div>
+    </div>
+  </div>

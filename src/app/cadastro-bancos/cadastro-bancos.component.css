@@ -1,0 +1,23 @@
+.box-cadastro {
+    margin: 30px;
+    padding: 30px;
+    }
+    .cadastro {
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-radius: 0;
+    outline: none;
+    height: 50px;
+    }
+    .btn-cadastro {
+   
+    display: inline;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #dcbc81;
+    font-weight: bold;
+    }
+    table {
+      width: 100%;
+    }
