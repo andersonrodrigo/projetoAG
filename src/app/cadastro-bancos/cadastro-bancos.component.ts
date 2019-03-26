@@ -46,17 +46,25 @@ export class CadastroBancosComponent implements OnInit {
     this.dataSource = [];
     this.rest.getBancos().subscribe((data: {}) => {
       console.log(data);
-      debugger
-      var ELEMENT_DATA: PeriodicElement[] = [
-         
-      ];
+      var ELEMENT_DATA: PeriodicElement[] = [];
+      for (var key in data) {
+        ELEMENT_DATA.push(data[key]);
+      }
       this.dataSource = ELEMENT_DATA;
     });
   }
 
   cadastro(){
-    console.log(this.acao)
     console.log(this.formCadastro.controls);
+    debugger
+    this.rest.addBanco({codigoBanco: parseInt(this.formCadastro.controls.codigoBanco.value),
+       descricaoBanco: this.formCadastro.controls.descricaoBanco.value,
+       descricaoSigla: this.formCadastro.controls.descricaoSigla.value,
+       dataLastrec: null,
+       codigoUsuario: 1
+      }).subscribe((data: {}) => {
+      console.log(data);
+    });
     debugger
    }
    sair(){

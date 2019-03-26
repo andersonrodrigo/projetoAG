@@ -3,7 +3,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-const endpoint = 'http://18.217.198.234:9010/';
+//const endpoint = 'http://18.217.198.234:9010/';
+const endpoint = 'http://localhost:8080/';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -24,13 +26,13 @@ export class RestService {
   }
 
   getBancos(): Observable<any> {
-    return this.http.get(endpoint + 'bancocodigo?banco=001').pipe(
+    return this.http.get(endpoint + 'listarbancos').pipe(
       map(this.extractData));
   }
   addBanco (product): Observable<any> {
     console.log(product);
-    return this.http.post<any>(endpoint + 'bancocodigo', JSON.stringify(product), httpOptions).pipe(
-      tap((product) => console.log(`added product w/ id=${product.id}`)),
+    return this.http.post<any>(endpoint + 'salvarbanco', JSON.stringify(product), httpOptions).pipe(
+      tap((product) => console.log(`added product`)),
       catchError(this.handleError<any>('addProduct'))
     );
   }
