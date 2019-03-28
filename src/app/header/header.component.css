@@ -37,3 +37,4 @@ a {
     text-decoration: none;
     background-color: transparent;
 }
+button { cursor:pointer; }

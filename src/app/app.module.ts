@@ -13,6 +13,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { CadastroEmpenhoComponent } from './cadastro-empenho/cadastro-empenho.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CadastroEmpenhoComponent } from './cadastro-empenho/cadastro-empenho.co
     ReactiveFormsModule,
     MatTabsModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
