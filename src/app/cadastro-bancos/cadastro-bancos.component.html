@@ -19,35 +19,60 @@
       <h3 class="text-center">Bancos</h3>
       <mat-tab-group>
           <mat-tab label="Seleção">
-              <mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="height: 200px; width: 110vh;">
-                  <!-- Position Column -->
+              <!--mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="height: 200px; width: 110vh;">
                   <ng-container matColumnDef="codigoBanco">
                     <mat-header-cell *matHeaderCellDef> Cod. Banco </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.codigoBanco}} </mat-cell>
                   </ng-container>
                 
-                  <!-- Name Column -->
                   <ng-container matColumnDef="descricaoBanco">
                     <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.descricaoBanco}} </mat-cell>
                   </ng-container>
                 
-                  <!-- Weight Column -->
                   <ng-container matColumnDef="descricaoSigla">
                     <mat-header-cell *matHeaderCellDef> Sigla </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.descricaoSigla}} </mat-cell>
                   </ng-container>
                 
-                
-
-                
                   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table-->
 
-                 
-
-                </mat-table>
-
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+                  </mat-form-field>
+                  
+                  <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" matSort>
+                  
+                      <!-- ID Column -->
+                      <ng-container matColumnDef="codigoBanco">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                        <td mat-cell *matCellDef="let row"> {{row.codigoBanco}} </td>
+                      </ng-container>
+                  
+                      <!-- Progress Column -->
+                      <ng-container matColumnDef="descricaoBanco">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+                        <td mat-cell *matCellDef="let row"> {{row.descricaoBanco}} </td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="descricaoSigla">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sigla </th>
+                        <td mat-cell *matCellDef="let row"> {{row.descricaoSigla}} </td>
+                      </ng-container>
+                  
+                    
+                  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                      </tr>
+                    </table>
+                  
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                  </div>
 
           </mat-tab>
 

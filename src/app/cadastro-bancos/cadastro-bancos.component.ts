@@ -3,16 +3,16 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { RestService } from '../rest.service';
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
-
-export interface PeriodicElement {
+export interface BancoElement {
   codigoBanco: number;
   descricaoBanco: string;
   descricaoSigla: string;
   
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [];
+const ELEMENT_DATA: BancoElement[] = [];
 
 @Component({
   selector: 'app-cadastro-bancos',
@@ -24,24 +24,17 @@ export class CadastroBancosComponent implements OnInit {
   formCadastro;
   tabs = ['Formulario', 'Seleção'];
   selected = new FormControl(0);
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  
   constructor(private fb: FormBuilder, public rest:RestService) { }
   displayedColumns: string[] = ['codigoBanco', 'descricaoBanco', 'descricaoSigla'];
-  dataSource = ELEMENT_DATA;
+  dataSource: MatTableDataSource<BancoElement>;
   mensagemCorpo;
-  mensagemTitulo;
   exibeMensagem = false;
-  _success = new Subject<string>();
-
-  staticAlertClosed = false;
-  successMessage: string;
 
   ngOnInit() {
-    setTimeout(() => this.staticAlertClosed = true, 20000);
-
-    this._success.subscribe((message) => this.successMessage = message);
-    this._success.pipe(
-      debounceTime(5000)
-    ).subscribe(() => this.successMessage = null);
 
     this.formCadastro = this.fb.group({
       descricaoBanco: [''],
@@ -49,36 +42,32 @@ export class CadastroBancosComponent implements OnInit {
       descricaoSigla: []
     });
     this.getBancos();
+  
   }
 
-  public changeSuccessMessage() {
-    this._success.next(`${new Date()} - Message successfully changed.`);
-  }
+  
   
   getBancos() {
-    this.dataSource = [];
+   // this.dataSource = new MatTableDataSource([]);
     this.rest.getBancos().subscribe((data: {}) => {
-      console.log(data);
-      var ELEMENT_DATA: PeriodicElement[] = [];
+      var ELEMENT_DATA: BancoElement[] = [];
       for (var key in data) {
         ELEMENT_DATA.push(data[key]);
       }
-      this.dataSource = ELEMENT_DATA;
+      this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+      
     });
   }
 
   cadastro(){
-    console.log(this.formCadastro.controls);
-    debugger
     this.rest.addBanco({codigoBanco: parseInt(this.formCadastro.controls.codigoBanco.value),
     descricaoBanco: this.formCadastro.controls.descricaoBanco.value,
     descricaoSigla: this.formCadastro.controls.descricaoSigla.value,
     codigoUsuario: "anomimo",
     dataLastrec: "2019-01-01"
       }).subscribe((data: {}) => {
-      console.log(data);
-      this.mensagemTitulo = 'Sucesso';
       this.mensagemCorpo = 'Banco salvo com sucesso'
+      this.exibeMensagem = true;
     });
     debugger
    }
@@ -86,9 +75,15 @@ export class CadastroBancosComponent implements OnInit {
      if (document.getElementById('mat-tab-label-0-0')){
        document.getElementById('mat-tab-label-0-0').click()
      }
-   //jQuery('.mat-tab-label mat-ripple ng-star-inserted').click()
-   
+     this.getBancos();
    }
+   applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
   
 }
   
