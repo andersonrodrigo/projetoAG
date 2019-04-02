@@ -71,7 +71,9 @@
                       </tr>
                     </table>
                   
-                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"  [length]="collectionSize"
+                    [pageSize]="pageSize"
+                  ></mat-paginator>
                   </div>
 
           </mat-tab>

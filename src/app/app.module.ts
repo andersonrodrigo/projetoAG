@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { CadastroEmpenhoComponent } from './cadastro-empenho/cadastro-empenho.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatTabsModule,
     MatTableModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+
+    BrowserModule,
+    Ng2SmartTableModule,
+    HttpClientModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent],

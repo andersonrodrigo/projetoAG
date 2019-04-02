@@ -5,6 +5,10 @@ import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
+
+
+
+
 export interface BancoElement {
   codigoBanco: number;
   descricaoBanco: string;
@@ -27,7 +31,9 @@ export class CadastroBancosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  
+  page=1;
+  pageSize=4;
+  collectionSize=0;
   constructor(private fb: FormBuilder, public rest:RestService) { }
   displayedColumns: string[] = ['codigoBanco', 'descricaoBanco', 'descricaoSigla'];
   dataSource: MatTableDataSource<BancoElement>;
@@ -46,18 +52,22 @@ export class CadastroBancosComponent implements OnInit {
   }
 
   
-  
   getBancos() {
-   // this.dataSource = new MatTableDataSource([]);
-    this.rest.getBancos().subscribe((data: {}) => {
-      var ELEMENT_DATA: BancoElement[] = [];
-      for (var key in data) {
-        ELEMENT_DATA.push(data[key]);
-      }
-      this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    // this.dataSource = new MatTableDataSource([]);
+     this.rest.getBancos(this.page, this.pageSize).subscribe((data: {}) => {
+      // this.ELEMENT_DATA = [];
+      // debugger
+       for (var key in data) {
+         if (key == 'content'){
+          this.dataSource = new MatTableDataSource(data[key]);
+         }else if (key =='totalElements'){
+           this.collectionSize = data[key];
+         }
+       }
+       //this.dataSource = new MatTableDataSource(ELEMENT_DATA);
       
-    });
-  }
+     });
+   }
 
   cadastro(){
     this.rest.addBanco({codigoBanco: parseInt(this.formCadastro.controls.codigoBanco.value),
