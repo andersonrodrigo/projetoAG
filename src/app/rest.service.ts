@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
-//const endpoint = 'http://18.217.198.234:8090/';
- const endpoint = 'http://localhost:8091/';
+const endpoint = 'http://18.217.198.234:8090/';
+//const endpoint = 'http://localhost:8091/';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -34,8 +34,8 @@ export class RestService {
       map(this.extractData));
   }
  
-  getBancos(numPagina, quantidade): Observable<any> {
-    return this.http.get(endpoint + 'listarbancos?page='+numPagina+'&size='+ quantidade).pipe(
+  getBancos(numPagina, quantidade, filtro): Observable<any> {
+    return this.http.get(endpoint + 'listarbancos?page='+numPagina+'&size='+ quantidade + filtro).pipe(
       map(this.extractData));
   }
   addBanco (product): Observable<any> {
@@ -53,8 +53,8 @@ export class RestService {
     );
   }
 
-  getEmpenhos(): Observable<any> {
-    return this.http.get(endpoint + 'listarempenho').pipe(
+  getEmpenhos(numPagina, quantidade, filtro): Observable<any> {
+    return this.http.get(endpoint + 'recuperaEmpenhos?page='+numPagina+'&size='+ quantidade + filtro).pipe(
       map(this.extractData));
   }
   getEmpenho(codigoEntidade, serieEmpenho, numeroEmpenho): Observable<any> {

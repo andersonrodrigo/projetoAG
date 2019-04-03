@@ -4,26 +4,31 @@
         <h3 class="text-center">Empenhos</h3>
         <mat-tab-group>
             <mat-tab label="Seleção">
-                <mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="height: 200px; width: 110vh;">
-                    <!-- Position Column -->
-                    <ng-container matColumnDef="codigoBanco">
-                      <mat-header-cell *matHeaderCellDef> Cod. </mat-header-cell>
-                      <mat-cell *matCellDef="let element"> {{element.codigoBanco}} </mat-cell>
-                    </ng-container>
-                  
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="descricaoBanco">
-                      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-                      <mat-cell *matCellDef="let element"> {{element.descricaoBanco}} </mat-cell>
-                    </ng-container>
-  
-                  
-                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  
-                   
-  
-                  </mat-table>
+               
+                
+                    <table class="table table-stripped" width="100%">
+                            <tbody>
+                                <tr >
+                                    <th width="10%">Codigo Entidade</th>
+                                    <th width="10%">Serie Empenho</th>
+                                    <th width="60%">Nome Credor</th>
+                                    <th width="20%">Valor</th>
+                                </tr>
+        
+                              <tr *ngFor="let empenho of listaItens">
+                                  <td>{{empenho.codigoEntidade}}</td>
+                                  <td>{{empenho.serieEmpenho}}</td>
+                                  <td>{{empenho.nomeCredor}}</td>
+                                  <td>{{empenho.valorEmpenho}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                            <hr>
+                          <ul class="nav nav-pills">
+                              <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                  <a class="nav-link active" href="#" [ngClass]="{'active':i==page}"  (click)="setPage(i, $event)">{{i +1 }}</a>
+                              </li>
+                          </ul>
   
   
             </mat-tab>

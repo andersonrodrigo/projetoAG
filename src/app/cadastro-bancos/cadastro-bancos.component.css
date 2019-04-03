@@ -1,6 +1,6 @@
 .box-cadastro {
-    margin: 30px;
-    padding: 30px;
+    margin: 15px;
+    padding: 15px;
     }
     .cadastro {
     padding: 10px;
@@ -26,4 +26,6 @@
       font-size: 14px;
       width: 100%;
     }
-   
+   .card{
+    width: 118vh;
+   }
